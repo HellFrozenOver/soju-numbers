@@ -20,8 +20,12 @@ const inputGuess = () => {
 const verifyGuess = () => {
   if (generatedNumber == guess) {
     console.log(`The number is correct!!`);
+    document.getElementById("success").style.display = "block";
+    document.getElementById("fail").style.display = "none";
   } else {
     console.log(`The number is wronggg :(`);
+    document.getElementById("success").style.display = "none";
+    document.getElementById("fail").style.display = "block";
   };
 }
 
@@ -43,5 +47,4 @@ function makeTheGuess() {
     inputGuess();
     verifyGuess();
   }
-
 }

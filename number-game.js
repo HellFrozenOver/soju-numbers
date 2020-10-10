@@ -10,13 +10,13 @@ console.log(`If you're smart enough to see this, you deserve the answer :D This 
 
 //Function for the guess input
 let guess;
-const inputGuess = () => guess = document.getElementById("inputGuess").value;
+const inputGuess = () => guess = parseInt(document.getElementById("inputGuess").value);
 
 //Function to compare the guess with the generated numbers
 let completionState;
 
 const verifyGuess = () => {
-  if (generatedNumber == guess) {
+  if (generatedNumber === guess) {
     document.getElementById("feedbackMsg").innerHTML = "You did it!";
     completionState = true;
     return true;
@@ -45,7 +45,7 @@ const currentRange = () => {
 const validateInputRange = () => {
   if (completionState) {
     document.getElementById("feedbackMsg").innerHTML = `You're done mate :/ Reset the game`;
-  } else if (document.getElementById("inputGuess").value < lower || document.getElementById("inputGuess").value > upper) {
+  } else if (guess < lower || guess > upper) {
     document.getElementById("feedbackMsg").innerHTML = `What're you doing? :/ Input a number between ${lower} and ${upper}!!`;
     return false;
   } else {
@@ -58,21 +58,18 @@ let counter = 0;
 
 //Function for the button
 function makeGuess() {
+  inputGuess();
   validateInputRange();
   if (validateInputRange()) {
     counter++;
     document.getElementById("guessCounter").innerHTML = `Number of guesses: ${counter}`;
-    inputGuess();
     verifyGuess();
-
     if (!verifyGuess()) {
       currentRange();
     }
-
     if (verifyGuess()) {
       document.getElementById("reset").style.display = "inline"
     }
-
   }
 }
 
@@ -89,6 +86,7 @@ input.addEventListener("keydown", function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
     document.getElementById("submitGuess").click();
+    input.select();
   }
 })
 

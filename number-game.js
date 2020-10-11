@@ -10,18 +10,23 @@ console.log(`If you're smart enough to see this, you deserve the answer :D This 
 
 //Function for the guess input
 let guess;
-const inputGuess = () => guess = parseInt(document.getElementById("inputGuess").value);
+const inputGuess = () => guess = parseInt(document.getElementById("input-guess").value);
 
 //Function to compare the guess with the generated numbers
-let completionState;
+const feedbackMsg = (msg) => document.getElementById("feedback-msg").innerHTML = msg;
 
+let completionState;
 const verifyGuess = () => {
   if (generatedNumber === guess) {
-    document.getElementById("feedbackMsg").innerHTML = "You did it!";
+    feedbackMsg("You did it!");
     completionState = true;
     return true;
-  } else {
-    document.getElementById("feedbackMsg").innerHTML = "The number is wrong :( Try again!";
+  } else if (guess < generatedNumber) {
+    feedbackMsg("Go higher!");
+    completionState = false;
+    return false;
+  } else if (guess > generatedNumber) {
+    feedbackMsg("Go lower!");
     completionState = false;
     return false;
   };
@@ -34,24 +39,56 @@ let upper = max;
 const currentRange = () => {
   if (guess < generatedNumber) {
     lower = guess;
-    document.getElementById("lowerRange").innerHTML = lower;
+    document.getElementById("lower-range").innerHTML = lower;
   } else if (guess > generatedNumber) {
     upper = guess;
-    document.getElementById("upperRange").innerHTML = upper;
+    document.getElementById("upper-range").innerHTML = upper;
   }
 }
 
+//Function to determine if guess has already been attempted
+
+
 //Function to validate input that number is within range
+let guessArr = [];
+
 const validateInputRange = () => {
-  if (completionState) {
-    document.getElementById("feedbackMsg").innerHTML = `You're done mate :/ Reset the game`;
-  } else if (guess < lower || guess > upper) {
-    document.getElementById("feedbackMsg").innerHTML = `What're you doing? :/ Input a number between ${lower} and ${upper}!!`;
-    return false;
-  } else {
-    return true;
+
+  // if (completionState) {
+  //   feedbackMsg("You're done mate :/ Reset the game");
+  // } else if (guessArr.indexOf(guess) !== -1) {
+  //   feedbackMsg("You've already tried this number :/")
+  //   return false;
+  // } else if (guess < lower || guess > upper) {
+  //   feedbackMsg(`What're you doing? :/ Input a number between ${lower} and ${upper}!!`);
+  //   return false;
+  // } else {
+  //   return true;
+  // }
+
+  switch (true) {
+    case (guess < lower || guess > upper):
+      feedbackMsg(`What're you doing? :/ Input a number between ${lower} and ${upper}!!`);
+      return false;
+      break;
+    case (guessArr.indexOf(guess) === -1):
+      guessArr.push(guess);
+      return true;
+      break;
+    case (guessArr.indexOf(guess) !== -1):
+      feedbackMsg("You've already tried this number :/")
+      return false;
+      break;
+    case (completionState === true):
+      feedbackMsg("You're done mate :/ Reset the game");
+      return false;
+      break;
+    default:
+      return true;
   }
 }
+
+
 
 //Guess counter
 let counter = 0;
@@ -59,10 +96,10 @@ let counter = 0;
 //Function for the button
 function makeGuess() {
   inputGuess();
-  validateInputRange();
+  //validateInputRange();
   if (validateInputRange()) {
     counter++;
-    document.getElementById("guessCounter").innerHTML = `Number of guesses: ${counter}`;
+    document.getElementById("guess-counter").innerHTML = `Number of guesses: ${counter}`;
     verifyGuess();
     if (!verifyGuess()) {
       currentRange();
@@ -80,12 +117,12 @@ function reload() {
 }
 
 //Event listener for pressing enter
-const input = document.getElementById("inputGuess");
+const input = document.getElementById("input-guess");
 
 input.addEventListener("keydown", function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
-    document.getElementById("submitGuess").click();
+    document.getElementById("submit-guess").click();
     input.select();
   }
 })

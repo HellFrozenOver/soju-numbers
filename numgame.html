@@ -12,20 +12,23 @@
   <h1>The Soju Number Game</h1>
 
   <div class="form-control">
-    <input type="number" id="inputGuess" name="inputGuess" value="" required />
+    <input type="text" id="input-guess" name="input-guess" value="" required />
     <label>Make your guess</label>
-    <button type="button" id="submitGuess" onclick="makeGuess()">Guess</button>
+    <button type="button" id="submit-guess" onclick="makeGuess()">Guess</button>
   </div>
 
   <div>
+    <div class="range-bar">
+      
+    </div>
     Range:
-    <span id="lowerRange">1</span>
+    <span id="lower-range">1</span>
     ------------
-    <span id="upperRange">61</span>
+    <span id="upper-range">61</span>
     <br>
-    <span id="guessCounter">No. of guesses: </span>
+    <span id="guess-counter">No. of guesses: </span>
     <br>
-    <span id="feedbackMsg"></span>
+    <span id="feedback-msg"></span>
     <br>
     <button type="button" class="bubbly-button" id="reset" onclick="reload()" style="display: none">Reset
     </button>

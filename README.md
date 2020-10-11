@@ -9,6 +9,7 @@ The website to host this will have these features:
 - An input field
 - A button to press to input the guess
 - A range bar to represent the range
+- Feedback messages to whether guess should be lower or higher
 - A counter to show how many guesses have been made
 - A penguin that'll change appearance with each guess. It'll 'die' after exceeding a certain number of guesses
 - A reset button to play the game from the beginning

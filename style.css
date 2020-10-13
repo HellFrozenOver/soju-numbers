@@ -7,7 +7,7 @@
 * {
   box-sizing: border-box;
   color: #E4E6EB;
-  font-family: "Muli"
+  font-family: "Muli";
 }
 
 body {
@@ -22,19 +22,73 @@ body {
   margin: 0;
 }
 
+.title-container {
+  display: inline-block;
+}
+
 h1 {
   text-transform: uppercase;
 }
 
+.information {
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+}
+
 #feedback-msg {
   display: inline-flex;
-  padding-top: 20px;
+  padding-top: 50px;
   text-transform: uppercase;
   font-weight: bolder;
 }
 
 #input-guess {
   background-color: #212121;
+}
+
+#guess-counter {
+  position: relative;
+  top: 1.5em;
+}
+
+.range {
+  display: inline;
+  color: rgb(244, 105, 27);
+}
+
+/* Tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Range Bar */
+.range-bar {
+  display: inline-block;
+  background-color: rgb(41, 125, 194);
+  width: 200px;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.range-bar-animation {
+  animation-play-state: running;
+  animation-name: range-shrink;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.62, 1, 0.78, 1);
+}
+
+@keyframes range-shrink {
+  0% {
+    width: 200px;
+  }
+  100% {
+    width: 150px;
+  }
 }
 
 /* Animated Form Text */

@@ -10,29 +10,27 @@
 
 <body>
   <h1>The Soju Number Game</h1>
-
   <div class="form-control">
     <input type="text" id="input-guess" name="input-guess" value="" required />
-    <label>Make your guess</label>
+    <label>Guess the number</label>
     <button type="button" id="submit-guess" onclick="makeGuess()">Guess</button>
   </div>
 
-  <div>
-    <div class="range-bar">
-      
-    </div>
-    Range:
-    <span id="lower-range">1</span>
-    ------------
-    <span id="upper-range">61</span>
+  <div class="information">
+    <div class="range" id="lower-range">1</div>
+    <div class="range-bar" id="range-bar"></div>
+    <div class="range" id="upper-range">61</div>
     <br>
     <span id="guess-counter">No. of guesses: </span>
     <br>
     <span id="feedback-msg"></span>
     <br>
+    <!-- <div class="help-bubble"></div> -->
     <button type="button" class="bubbly-button" id="reset" onclick="reload()" style="display: none">Reset
     </button>
   </div>
+
+
 
   <script src="/number-game.js"></script>
 
